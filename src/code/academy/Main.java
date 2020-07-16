@@ -1,25 +1,17 @@
 package code.academy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
-        EmailSender emailSender = new EmailSender();
-        emailSender.sendEmail(emails());
 
-    }
+        Map<DnsProvider, DnsServer> mapas = new Map<>();
+        mapas.addToMap(DnsProvider.AMAZON, new DnsServer("123.123.123.123", "222.222.222.222"));
+        mapas.addToMap(DnsProvider.GOOGLE, new DnsServer("111.111.123.123", "000.000.000.000"));
 
-    static List<Email> emails() {
-        return new ArrayList<>()
-        {
-            {
-                add(new Email("Receiver1@email.com", "code", "java"));
-                add(new Email("Receiver2@email.com", "code", "python"));
-                add(new Email("Receiver3@email.com", "code", "C++"));
-                add(new Email("Receiver4@email.com", "code", "ruby"));
-            }
-        };
+        for (Pair<DnsProvider, DnsServer> pair : mapas.getListOfPairs()) {
+            System.out.println(String.format("pair key: %s and value: %s", pair.getKey(), pair.getValue()));
+
+        }
+        System.out.println(mapas.getValue(DnsProvider.GOOGLE));
     }
 }
