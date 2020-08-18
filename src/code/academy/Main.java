@@ -2,16 +2,34 @@ package code.academy;
 
 public class Main {
 
+
     public static void main(String[] args) {
 
-        Map<DnsProvider, DnsServer> mapas = new Map<>();
-        mapas.addToMap(DnsProvider.AMAZON, new DnsServer("123.123.123.123", "222.222.222.222"));
-        mapas.addToMap(DnsProvider.GOOGLE, new DnsServer("111.111.123.123", "000.000.000.000"));
+        Account account = new Account();
+        Expenses expenses1 = new Expenses(12.43, Transaction.CASH, "MasterCard");
+        Expenses expenses2 = new Expenses(12.43, Transaction.CASH, "MasterCard");
+        Expenses expenses3 = new Expenses(12.43, Transaction.CASH, "MasterCard");
+        account.addExpenses(expenses1);
+        account.addExpenses(expenses2);
+        account.addExpenses(expenses3);
 
-        for (Pair<DnsProvider, DnsServer> pair : mapas.getListOfPairs()) {
-            System.out.println(String.format("pair key: %s and value: %s", pair.getKey(), pair.getValue()));
 
-        }
-        System.out.println(mapas.getValue(DnsProvider.GOOGLE));
+
+        account.addIncome(new Income(120.234, Transaction.CASH, "Refund"));
+        account.addExpenses(new Expenses(111.43, Transaction.CASH, "MasterCard"));
+        account.addExpenses(new Expenses(122.00, Transaction.CASH, "MasterCard"));
+        account.addIncome(new Income(1200.234, Transaction.CASH, "Refund"));
+
+        account.getExpensesReport();
+        System.out.println("################\n");
+        account.getIncomeReport();
+
+        System.out.println("################\n");
+
+        account.getExpenseTransaction(2);
+        account.getIncomeTransaction(1);
+
+
+
     }
 }
